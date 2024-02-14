@@ -1,25 +1,41 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
-function App() {
+export default function Form() {
+  const [firstName, setFirstName] = useState('Meveena');
+  const [age, setAge] = useState('20');
+  const ageAsNumber = Number(age);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <label>
+        First name:
+        <input
+          value={firstName}
+          onChange={e => setFirstName(e.target.value)}
+        />
+  </label>
+      <label>
+        Age:
+        <input
+          value={age}
+          onChange={e => setAge(e.target.value)}
+          type="number"
+        />
+         
+
+        <button onClick={() => setAge(ageAsNumber + 10)}>
+          
+          Add 10 years
+        </button>
+        </label>
+   <result>
+      {firstName !== '' &&
+        <p>Your name is {firstName}.</p>
+      }
+      {ageAsNumber > 0 &&
+        <p>Your age is {ageAsNumber}.</p>
+      }
+      </result>
+    </>
   );
 }
-
-export default App;
